@@ -1,5 +1,5 @@
-module.exports = function countCats(/* matrix */) {
-  function countCats(backyard) {
+module.exports = function countCats(backyard) {
+ 
     count = 0
     for (var i = 0; i < backyard.length; i++) {
         var innerArrayLength = backyard[i].length;
@@ -10,6 +10,4 @@ module.exports = function countCats(/* matrix */) {
         }
     }
     return count
-}
-  // remove line with error and write your code here
 };
