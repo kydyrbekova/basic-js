@@ -1,24 +1,23 @@
 module.exports = function repeater(str, options) {
-    let result="";
+    let separator = options.separator ? options.separator : '+';
+    let addition_sep = options.additionSeparator ? options.additionSeparator : '|';
+    let repeatTimes = options.repeatTimes ? options.repeatTimes : 1;
+    let addition_repTimes = options.additionRepeatTimes ? options.additionRepeatTimes : 1;
+    let addition;
+    let result = []; 
     
-    if(options.repeatTimes && options.additionRepeatTimes && typeof(options.repeatTimes) === "number" && typeof(options.additionRepeatTimes)==="number") 
-       {
-        for(var i = 0; i < options.repeatTimes; i++){
-          let subresult = str;
-            for(var j = 0; j < options.additionRepeatTimes; j++){
-                subresult = subresult + options.addition;
-                if(j < options.additionRepeatTimes-1){
-                    subresult = subresult + options.additionSeparator;
-                }
-            }
-            result = result + subresult;
-            if ( i < options.repeatTimes-1){
-                result = result + options.separator;
-            }
-        }
-      return result;
-    } else  {
-    return str;
+    if (typeof(options.addition) == "undefined") {
+        addition = '';
+    } else {
+        addition = options.addition  + '';
     }
+
+    for(let i = 0; i < repeatTimes; i++){
+        let sep_array = [];
+        for(let j = 0; j < addition_repTimes; j++) {
+            sep_array.push(addition);
+        }
+        result.push(str+sep_array.join(addition_sep))
+    }
+    return (result.join(separator));
 };
-  
